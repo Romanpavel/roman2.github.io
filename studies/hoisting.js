@@ -31,3 +31,26 @@
  console.log(b); // also throws a reference error
  
  const b = 10;
+
+// function delcarations:
+
+greeting('pal') // prints 'hello pal' because function declarations become hoisted
+
+function greeting (string) {
+    return 'hello' + " " + string;
+}
+// function declarations become hoisted to the top of the scope, and immidietly available.
+
+// function expressions:
+
+greeting('friend') // throws an error, bacause the variable was hoisted but not the function
+
+var greeting2 = function (string) {
+    return 'hello' + ' ' + string;
+}
+
+// only the varibale greeting2 will be hoisted, the rest of the function has to wait to reach the code
+
+
+// the JavaScript interpreter, changes the code we type into binaray language of 0 and 1 for the computer to work on
+// it Interprets our code, and speaks it to the computer in its language
