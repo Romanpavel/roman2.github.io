@@ -66,11 +66,15 @@
    
    // the DELETE operator deletes the value
    
-   var array = [1, 2, 3]
+   var obj = {
+    key1: 'value1',
+    key2: 2,
+    key3: false
+   };
    
-   delete array[2];      
+   delete obj.key3;      
    
-   console.log(array) // results in [1, 2]
+   console.log(obj) // results in {key1: 'value1', key2: 2}
   
   
   -z;   // unary negation, results in the opposite of the value, 5 -> -5
@@ -179,5 +183,5 @@ if (x > 0 || y < 0) {               // test if either x is larger than 0 OR y is
  
  var e = 1
  
- e = 1 ? true : 'whats going on here' // if the condition is true, evaluates first value, 
- e = 2 ? 'hold up' : true            // evaluates to true, because condition is false, takes 2nd value
+ e === 1 ? true : 'whats going on here' // if the condition is true, evaluates first value, 
+ e > 2 ? 'hold up' : true            // evaluates to true, because condition is false, takes 2nd value

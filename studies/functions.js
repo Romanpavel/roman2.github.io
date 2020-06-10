@@ -11,6 +11,11 @@
  * 
  * 3. functions can take other functions as parameters, they can return functions, and have functions inside
  * 
+ * 4. Scopes: the area, that a value or function is currently accesible in, 
+ *            scopes are hierarchy, so inner or lower scopes has access to higher or outer scopes 
+ * 
+ * 5. Closures: occur in functions when nested functions have accessibility to outer functions variables
+ * 
  */
  
  // FUNCTION DECLARATION:

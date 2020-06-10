@@ -16,12 +16,20 @@
      console.log('i got something') // since the result is true, the code block is executed
  }
  
+ // there are unlimited amount of if statements you can run in a code
+ 
+ // syntax: keyword (if) followed by parantheses -> ( conditional statement ) { result if condition is true} 
+ 
+ 
  // sometimes you have several if statements, with these cases we use 'else if' to check for multiple conditions
  
  if (number > 100) {              // this if statement is false so the code does not run
      console.log('big')
  } else if (number % 10 !== 0) {  // if number divided by 10 does NOT equal 0, it does =0 therefore false, code doesnt run
      console.log('no remainder')
+     
+     // else if statements are only limited by the amount of conditions you can come up with 
+     
  } else if (number < 10) {
      console.log('so close')     // 10 is NOT less than 10, so it is still false
  } else if (number === 10) {
@@ -29,6 +37,10 @@
  } else if (number < 100) {
      console.log('what happened') // this code never runs, even though true, the code runs only the 1st true statement
  }
+ 
+ // syntax: keyword (if) parantheses (conditional) {
+ //                                                code block
+//                                                 } keyword (else if) parentheses (conditional) { code block}
  
  // sometimes in code there needs to be a default statement in case none of the cases evaluate to true
  // this is where we have an else statement
@@ -39,10 +51,23 @@
      console.log('be afraid')
  } else if (myString[0].toLowerCase() === 'G') {
      console.log('be very afraid')
+     
+     // in an if else statement chain, you can only have ONE else statement, it runs if no other condition is met
+     
  } else {
      console.log('nothing to fear')               // since all other code fails the condition, the else statement executes
                                                  // prints 'nothing to fear to the screen'
  }
+ 
+  // syntax: keyword (if) parantheses (conditional) {
+ //          code block
+//           } keyword (else if) parantheses (conditional) { 
+//           code block
+//           } keyword (else) parantheses(condtional) {
+ //           code block
+//           }                        
+ 
+ 
  
  /**
   * SWITCH:
@@ -69,3 +94,14 @@
       console.log('just give me an electric car')  // code does not run because case 'tesla' was executed before
          
   }
+  
+  
+  // Syntax:  keyword (switch) parantheses (value) {
+  //                   code block:
+  //                   keyword (case) string 'value' colon (:)
+  //                                 execute code if value matches case
+  //                   keyword (break) semicolon (;)
+  //                   keyword (default) colon (;)
+  //                                  execute code if no value matches case, similar to else statement
+  //}
+  

@@ -72,6 +72,14 @@ var longString = "today was a good day, but not like any other day " +
 var anotherLongString = "when I look back at today, I will indeed be happy \
                          because it was a wonderful day, and i got to do so much \
                          but most importantly i was able to take a nap."
+                         
+
+// we can access characters of a string by either using bracket notation, or the .charAt() method
+
+var string = 'hello';
+
+// string[0] => 'h'
+// string.charAt(0) => 'h'
 
 
 /**
