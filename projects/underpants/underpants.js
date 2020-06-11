@@ -138,9 +138,9 @@ if (isNaN(number) === true || number === undefined) {
     
      // else, if number is given, and its an array, use slice to return all values down to the number
 } else {
-    return array.slice(-number)
+    return array.slice(-number);
 }
-}
+};
 
 
 /** _.indexOf
@@ -174,7 +174,7 @@ _.indexOf = function (array, value) {
     // otherwise return -1
     return -1;
     
-}
+};
 
 /** _.contains
 * Arguments:
@@ -291,13 +291,22 @@ _.unique = function (array) {
 
 _.filter = function (array, func) {
     
+    // create a place to hold the new array of filtered results
+    
     var myArr = [];
     
+    // loop over the array 
+    
     for (let i = 0; i < array.length; i++) {
+        
+        // if the result of the function passing in the array element index, array, evaluates to true, push that value to myArr
+        
         if (func(array[i], i, array) === true) {
             myArr.push(array[i]);
         }
     }
+    // return the filtered array, having evaluated to true after being passed trhough the function
+    
     return myArr;
 };
 
@@ -319,6 +328,8 @@ _.filter = function (array, func) {
 _.reject = function (array, func) {
     
     // return the filter function that takes an array and a function
+    // using arrow functions, if element, index, array being passed through the function evaluate to false, result is false
+    // no return nessasary 
     
     return _.filter(array, (e, i, a) => func(e, i, a) === false);
     
@@ -346,19 +357,32 @@ _.reject = function (array, func) {
 
 _.partition = function (array, func) {
     
+    // create an array for all truthy values 
+    
     var trueArr = [];
+    
+    // create an array for all the falsy values
+    
     var falseArr = [];
     
+    // loop over the array 
+    
     for (let i = 0; i < array.length; i++) {
+        
+        // if the result of passing in element, index, array evaluates to true, push element in trueArr
+        
         if (func(array[i], i, array) === true) {
             trueArr.push(array[i]);
-        }
-    }
-    for (let i = 0; i < array.length; i++) {
-        if (func(array[i], i, array) === false) {
+            
+        // if the result of passing in element, index, array evaluates to false, push element in falseArr
+            
+        } else if (func(array[i], i, array) === false) {
             falseArr.push(array[i]);
         }
     }
+
+// return the 2 arrays concatted 
+    
     return [trueArr].concat([falseArr]);
     
 };
@@ -382,27 +406,48 @@ _.partition = function (array, func) {
 
 _.map = function (collection, func) {
     
+    // create an empty array to hold the values of collection after being passed through func
+    
     var myArr = [];
+    
+    // check if colleaction is an array
     
         if (Array.isArray(collection)) {
             
+            // loop over collection array
+            
              for (let i = 0; i < collection.length; i++) {
+                 
+                 // set variable x eqaul to the results of passing collection element, index, array through the function
             
                 var x = func(collection[i], i, collection);
+                
+                // push the values of x to myArr
          
                      myArr.push(x);
              }
          
+         // check if collection is an object
+         
         } else if (typeof collection === 'object' && collection !== null && collection instanceof Date === false) {
             
+            // loop through the object
+            
                 for (var key in collection) {
+                    
+                    // assign variable y to the values of collecction element, index, array after being passed through the function
             
                 var y = func(collection[key], key, collection);
+            
+            // push all values of y to myArr
             
                     myArr.push(y);
         }
         
         }
+        
+        // return the array of updated elements
+        
         return myArr;
 };
 
@@ -420,6 +465,11 @@ _.map = function (collection, func) {
 */
 
 _.pluck = function(array, prop) {
+    
+    // arrow functino, no need for return
+    // return map function, searching for argument prop as a key in the index of the array
+    
+    
     return _.map(array, (e, i, a) => a[i][prop]);
  };
 
@@ -447,6 +497,40 @@ _.pluck = function(array, prop) {
 */
 
 
+_.every = function (collection, func) {
+    
+    // create a base varaible of test and assign it to the boolean value of true
+    
+let test = true;
+
+// run the each function, passing through a collection, and a function
+
+_.each(collection, function(e, i, a) {
+    
+    // if func is a function and the result of function on all elements is opposite of true -> false
+    
+    if (typeof func === 'function' && !func(e, i, a)) {
+        
+        // change test variable to false
+        
+            test = false;
+            
+            // if element results to falsy
+            
+        } else if (!e) {
+            
+            // change test to false
+             
+                test = false;
+    }
+});
+
+// return the test value
+
+return test;
+};
+
+
 /** _.some
 * Arguments:
 *   1) A collection
@@ -467,6 +551,39 @@ _.pluck = function(array, prop) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+
+_.some = function (collection, func) {
+    
+    // create a base test, assign it to the boolena value of false
+    
+let test = false;
+
+// run the each function, which takes a collection, and an function
+
+_.each(collection, function (e, i, c) {
+    
+    // if function exists, and the result of the function is true, re-asign test to true
+
+    if (typeof func === 'function') {
+        if(func(e, i, c) === true) {
+          test = true;
+}
+}
+    // if the function does not exist, check for the truthy of the element -> re-asign test to true
+
+    if (func === undefined) {
+    if(e) {
+        test = true;
+    }
+    
+}
+
+});
+
+// return the result value of test
+
+return test;
+};
 
 
 /** _.reduce
@@ -489,6 +606,41 @@ _.pluck = function(array, prop) {
 */
 
 
+ _.reduce = function(array, func, seed) {
+     
+     // assign the variable of prevResult to the seed
+     
+   let prevResult = seed;
+   
+    // if the seed does not exist, assign it to the first index of the array
+    
+    if (seed === undefined) {
+        prevResult = array[0];
+        
+        // loop over the array starting at the 2nd index
+        
+        for (let i = 1; i < array.length; i++) {
+            
+    // assign the result to the values being  passed trough the function
+    
+            prevResult = func(prevResult, array[i], i);
+        }
+    } else {
+        
+        // loop over the array if seed is given, pass the elements through the function, and assign to prevResult
+        
+        for (let i = 0; i < array.length; i++) {
+            prevResult = func(prevResult, array[i], i);
+        }
+    }
+    
+    // return the updated value
+    
+    return prevResult;
+};
+
+
+
 /** _.extend
 * Arguments:
 *   1) An Object
@@ -503,6 +655,15 @@ _.pluck = function(array, prop) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(object1, object2, ...object) {
+    
+// using the method of Object.assign, assign all subsequent objects to the first object, updating if keys match
+
+    return Object.assign(object1, object2, ...object);
+    
+
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
