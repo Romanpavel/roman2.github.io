@@ -101,7 +101,7 @@ function capitalizeAllWords(string) {
         
         // add the capitilzed words to the word array
         
-        words.push(strings[i][0].toUpperCase() + strings[i].slice(1))
+        words.push(strings[i][0].toUpperCase() + strings[i].slice(1));
     }
     
     // return the array joined by a space

@@ -606,38 +606,54 @@ return test;
 */
 
 
- _.reduce = function(array, func, seed) {
+ _.reduce = function(arr, func, seed) {
      
-     // assign the variable of prevResult to the seed
+     let prevResult;
      
-   let prevResult = seed;
+     if (seed !== undefined) {
+         prevResult = seed;
+         _.each(arr, function(e, i, a) {
+            prevResult = func(prevResult, e, i, a);
+         });
+     } else {
+         prevResult = arr[0];
+         for (let i = 1; i < arr.length; i++) {
+             prevResult = func(prevResult, arr[i], i, arr);
+         }
+     }
+     return prevResult;
+ };   
+     
+//      // assign the variable of prevResult to the seed
+     
+//   let prevResult = seed;
    
-    // if the seed does not exist, assign it to the first index of the array
+//     // if the seed does not exist, assign it to the first index of the array
     
-    if (seed === undefined) {
-        prevResult = array[0];
+//     if (seed === undefined) {
+//         prevResult = array[0];
         
-        // loop over the array starting at the 2nd index
+//         // loop over the array starting at the 2nd index
         
-        for (let i = 1; i < array.length; i++) {
+//         for (let i = 1; i < array.length; i++) {
             
-    // assign the result to the values being  passed trough the function
+//     // assign the result to the values being  passed trough the function
     
-            prevResult = func(prevResult, array[i], i);
-        }
-    } else {
+//             prevResult = func(prevResult, array[i], i);
+//         }
+//     } else {
         
-        // loop over the array if seed is given, pass the elements through the function, and assign to prevResult
+//         // loop over the array if seed is given, pass the elements through the function, and assign to prevResult
         
-        for (let i = 0; i < array.length; i++) {
-            prevResult = func(prevResult, array[i], i);
-        }
-    }
+//         for (let i = 0; i < array.length; i++) {
+//             prevResult = func(prevResult, array[i], i);
+//         }
+//     }
     
-    // return the updated value
+//     // return the updated value
     
-    return prevResult;
-};
+//     return prevResult;
+// };
 
 
 
