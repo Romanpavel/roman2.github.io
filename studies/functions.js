@@ -11,10 +11,23 @@
  * 
  * 3. functions can take other functions as parameters, they can return functions, and have functions inside
  * 
- * 4. Scopes: the area, that a value or function is currently accesible in, 
- *            scopes are hierarchy, so inner or lower scopes has access to higher or outer scopes 
+ * 4. Scopes: refering to the accessibilty, visibility, and general location of where datatypes are stored,
+ *            functions create their own scope, this means variables created in a function are only accessible inside
+ *            that function, inner scopes or child scopes have access to the parent scope or outer scope variable, but not 
+ *            the other way around.
+ *            when using the let keyword, the variable is scoped to the function or loop.
+ *            the keyword var makes variables globally scoped unless they are created inside a functions scope
+ *            scoping is how we shelter certain variables from outer processes
  * 
- * 5. Closures: occur in functions when nested functions have accessibility to outer functions variables
+ * 5. Closures: an example would be when an inner function, or nested function, uses a variable or parameter
+ *              that was created in an outer scope.
+ *              closures allow innner functions to take advantage of this javascript property, and eliminate 
+ *              complexity by accessing and using variables or parameters that have already been established.
+ *              when an inner function accessed the outer functions variables, it encloses, this is why we call it a closure,
+ *              the inner function bundles with the outer function.
+ *              This does not work in the opposite way, an outer function or parent scope, does not have access to inner function 
+ *              or child scope, meaning an outer function can NOT have closure with an inner function
+ *              but, an inner function can have closure to the outer function because its using the outer func variables or parameters.
  * 
  */
  
